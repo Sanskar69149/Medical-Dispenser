@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medication Reminder App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Medication Reminder App</h1>
+    <p>Allow notifications to receive reminders on time.</p>
+
+    <!-- Form Section -->
+    <form id="tabletForm">
+      <div id="tabletInputs">
+        <div class="tablet-entry">
+          <label>Tablet Name:</label>
+          <input type="text" class="tabletName" placeholder="Enter tablet name" required>
+
+          <label>Number of Tablets:</label>
+          <input type="number" class="tabletCount" min="1" placeholder="Enter quantity" required>
+
+          <label>Time of Intake:</label>
+          <input type="time" class="tabletTime" required>
+        </div>
+      </div>
+
+      <button type="button" id="addTablet">+ Add Another Tablet</button>
+      <button type="submit">Set Notifications</button>
+    </form>
+
+    <!-- Schedule Display -->
+    <h2>Medication Schedule</h2>
+    <ul id="scheduleList"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
