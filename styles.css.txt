@@ -1,0 +1,164 @@
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, p {
+  text-align: center;
+  color: #333;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #666;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+  color: #555;
+  font-size: 14px;
+}
+
+input {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#addTablet {
+  background-color: #28a745;
+}
+
+#addTablet:hover {
+  background-color: #218838;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  padding: 10px;
+  margin: 10px 0;
+  background: #f1f1f1;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li span {
+  font-weight: bold;
+}
+
+li button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+li button:hover {
+  background: #b02a37;
+}
+
+/* Styling for dynamic tablet entries */
+.tablet-entry {
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.tablet-entry label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.tablet-entry input {
+  width: 100%;
+}
+
+.tablet-entry .removeTablet {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tablet-entry .removeTablet:hover {
+  background-color: #b02a37;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  input, button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  li button {
+    margin-top: 10px;
+  }
+}
