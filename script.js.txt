@@ -1,0 +1,103 @@
+// script.js
+
+// Request notification permission on page load
+if ("Notification" in window) {
+  Notification.requestPermission().then((permission) => {
+    if (permission !== "granted") {
+      alert("Notification permission is required for this app to work.");
+    }
+  });
+} else {
+  alert("Notifications are not supported in this browser.");
+}
+
+// Event listener for adding a new tablet entry
+document.getElementById("addTablet").addEventListener("click", function () {
+  const tabletInputs = document.getElementById("tabletInputs");
+
+  const tabletEntry = document.createElement("div");
+  tabletEntry.classList.add("tablet-entry");
+  tabletEntry.innerHTML = `
+    <label>Tablet Name:</label>
+    <input type="text" class="tabletName" placeholder="Enter tablet name" required>
+
+    <label>Number of Tablets:</label>
+    <input type="number" class="tabletCount" min="1" placeholder="Enter quantity" required>
+
+    <label>Time of Intake:</label>
+    <input type="time" class="tabletTime" required>
+
+    <button type="button" class="removeTablet">Remove</button>
+  `;
+
+  // Add to form
+  tabletInputs.appendChild(tabletEntry);
+
+  // Remove button functionality
+  tabletEntry.querySelector(".removeTablet").addEventListener("click", function () {
+    tabletEntry.remove();
+  });
+});
+
+// Form submission handler
+document.getElementById("tabletForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const tabletEntries = document.querySelectorAll(".tablet-entry");
+  const scheduleList = document.getElementById("scheduleList");
+
+  if (tabletEntries.length === 0) {
+    alert("Please add at least one tablet entry.");
+    return;
+  }
+
+  scheduleList.innerHTML = ""; // Clear previous schedule
+
+  tabletEntries.forEach((entry) => {
+    const name = entry.querySelector(".tabletName").value.trim();
+    const count = entry.querySelector(".tabletCount").value.trim();
+    const time = entry.querySelector(".tabletTime").value;
+
+    if (name && count && time) {
+      const listItem = document.createElement("li");
+      listItem.textContent = ${name} - ${count} tablet(s) at ${time};
+      scheduleList.appendChild(listItem);
+
+      // Set a notification
+      setMedicationReminder(name, count, time);
+    }
+  });
+
+  alert("Notifications have been set for your medication schedule!");
+});
+
+// Function to set medication reminders using setTimeout
+function setMedicationReminder(name, count, time) {
+  const now = new Date();
+  const [hours, minutes] = time.split(":").map(Number);
+
+  const reminderTime = new Date();
+  reminderTime.setHours(hours, minutes, 0, 0);
+
+  const timeDifference = reminderTime.getTime() - now.getTime();
+
+  if (timeDifference > 0) {
+    setTimeout(() => {
+      showNotification(name, count);
+    }, timeDifference);
+  } else {
+    alert(The time for ${name} has already passed. Please set a future time.);
+  }
+}
+
+// Function to show notifications
+function showNotification(name, count) {
+  if (Notification.permission === "granted") {
+    new Notification("Medication Reminder", {
+      body: Time to take ${count} tablet(s) of ${name}.,
+      icon: "https://example.com/notification-icon.png", // Add your custom icon here
+    });
+  } else {
+    alert(Time to take ${count} tablet(s) of ${name}.);
+  }
+}
